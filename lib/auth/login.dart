@@ -1,9 +1,19 @@
-import 'package:firebase_basics/auth/signup.dart';
+import 'package:firebase_basics/components/text_form_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+import '../components/custom_auth_logo.dart';
+import '../components/custom_button.dart';
+
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController email = TextEditingController(); 
+  TextEditingController Password = TextEditingController(); 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,9 +25,7 @@ class LoginPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 40),
-                Center(
-                    child: Image.asset("assets/images/5590.jpg",
-                        width: 120, height: 120)),
+              const  CustomAuthLogo(),
                 const SizedBox(height: 10),
                 const Text('Login',
                     style:
@@ -25,13 +33,15 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 5),
                 const Text('Login to continue  using the app',
                     style: TextStyle(color: Color(0xFF424242), fontSize: 17)),
-                const CustomTextField(
+                 CustomTextField(
                   mainTxt: 'Email',
                   hintTxt: 'Enter Your Email',
+                  myController: email,
                 ),
-                const CustomTextField(
+                 CustomTextField(
                   mainTxt: 'Password',
                   hintTxt: 'Enter Your Password',
+                myController: Password,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 5, right: 3),
@@ -47,7 +57,8 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             ),
-            const MainButtonWithNotImage(
+             MainButtonWithNotImage(
+              onPressed: (){},
                 color: Color(0xff2cc1ac), title: 'Login', height: 45),
             const SizedBox(
               height: 20,
@@ -76,20 +87,27 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 10,),
-             Row(
+            const SizedBox(
+              height: 15,
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   "Don't Have An Account? ",
-                  style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.grey[700]),
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[700]),
                 ),
                 InkWell(
-
-                  onTap:(){},
-                  child:  const Text(
+                  onTap: () {},
+                  child: const Text(
                     " Register",
-                    style: TextStyle(fontSize: 17, color: Color(0xff2cc1ac),fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 17,
+                        color: Color(0xff2cc1ac),
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
@@ -101,75 +119,5 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class MainButtonWithNotImage extends StatelessWidget {
-  const MainButtonWithNotImage({
-    super.key,
-    required this.color,
-    required this.title,
-    required this.height,
-  });
-  final Color color;
-  final String title;
-  final double height;
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialButton(
-      height: height,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      onPressed: () {},
-      color: color,
-      child: Text(
-        title,
-        style: const TextStyle(fontSize: 17, color: Colors.white),
-      ),
-    );
-  }
-}
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-    required this.mainTxt,
-    required this.hintTxt,
-  });
-  final String mainTxt;
-  final String hintTxt;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            mainTxt,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-                hintText: hintTxt,
-                hintStyle: const TextStyle(fontSize: 15, color: Colors.grey),
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
-                filled: true,
-                fillColor: Colors.grey[250],
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: const BorderSide(
-                        color: Color.fromARGB(255, 67, 67, 67))),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: const BorderSide(color: Colors.grey))),
-          ),
-        ],
-      ),
-    );
-  }
-}
