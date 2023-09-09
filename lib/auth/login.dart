@@ -1,8 +1,8 @@
-import 'package:firebase_basics/components/text_form_field.dart';
+import 'package:firebase_basics/component/custom_button.dart';
+import 'package:firebase_basics/component/text_form_field.dart';
 import 'package:flutter/material.dart';
 
-import '../components/custom_auth_logo.dart';
-import '../components/custom_button.dart';
+import '../component/custom_auth_logo.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
              MainButtonWithNotImage(
               onPressed: (){},
-                color: Color(0xff2cc1ac), title: 'Login', height: 45),
+                color: const Color(0xff2cc1ac), title: 'Login', height: 45),
             const SizedBox(
               height: 20,
             ),
@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.grey[700]),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {Navigator.of(context).pushNamed("SignUp");},
                   child: const Text(
                     " Register",
                     style: TextStyle(

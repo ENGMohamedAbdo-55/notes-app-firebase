@@ -1,4 +1,5 @@
 import 'package:firebase_basics/auth/login.dart';
+import 'package:firebase_basics/auth/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const LoginPage(),
+      routes: {
+        "SignUp": (context) => const SignUp(),
+        "Login": (context) => const LoginPage(),
+      },
     );
   }
 }
