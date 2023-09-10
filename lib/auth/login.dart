@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_basics/component/custom_button.dart';
 import 'package:firebase_basics/component/text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,22 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             CustomMainButtonWithoutImg(
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    final credential =
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                      email: email.text,
+                      password: Password.text,
+                    );
+                    Navigator.of(context).pushReplacementNamed("HomePage");
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'user-not-found') {
+                      print('No user found for that email.');
+                    } else if (e.code == 'wrong-password') {
+                      print('Wrong password provided for that user.');
+                    }
+                  }
+                },
                 color: const Color(0xff2cc1ac),
                 title: 'Login',
                 height: 45),
@@ -71,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
               image: 'assets/images/download (1).png',
               color: const Color(0xff7b8c9c),
               onPressed: () {},
-              borderRadius: 15.0,
+              borderRadius: 15.1,
             ),
             const SizedBox(
               height: 15,
@@ -82,18 +98,18 @@ class _LoginPageState extends State<LoginPage> {
                 Text(
                   "Don't Have An Account? ",
                   style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 15.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.grey[700]),
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).pushNamed("SignUp");
+                    Navigator.of(context).pushReplacementNamed("SignUp");
                   },
                   child: const Text(
                     " Register",
                     style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 17.0,
                         color: Color(0xff2cc1ac),
                         fontWeight: FontWeight.bold),
                   ),

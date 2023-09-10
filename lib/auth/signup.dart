@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../component/custom_auth_logo.dart';
@@ -63,7 +64,25 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
             CustomMainButtonWithoutImg(
-                onPressed: () {},
+                onPressed: () async {
+              
+                  try {
+                    final credential = await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                      email: email.text,
+                      password: Password.text,
+                    );
+                        Navigator.of(context).pushReplacementNamed("HomePage");
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'weak-password') {
+                      print('The password provided is too weak.');
+                    } else if (e.code == 'email-already-in-use') {
+                      print('The account already exists for that email.');
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
+                },
                 color: const Color(0xff2cc1ac),
                 title: 'Login',
                 height: 45),
@@ -83,17 +102,12 @@ class _SignUpState extends State<SignUp> {
                       fontWeight: FontWeight.bold,
                       color: Colors.grey[700]),
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).pushNamed("Login");
-                  },
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(
-                        fontSize: 17,
-                        color: Color(0xff2cc1ac),
-                        fontWeight: FontWeight.bold),
-                  ),
+                const Text(
+                  "Login",
+                  style: TextStyle(
+                      fontSize: 17,
+                      color: Color(0xff2cc1ac),
+                      fontWeight: FontWeight.bold),
                 ),
               ],
             )

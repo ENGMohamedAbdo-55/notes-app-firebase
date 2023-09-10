@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomMainButton extends StatelessWidget {
-   CustomMainButton({
+  const  CustomMainButton({
     super.key,
     this.title,
     this.image,
@@ -9,11 +9,11 @@ class CustomMainButton extends StatelessWidget {
     this.onPressed,
     this.borderRadius,
   });
-  var title;
-  var image;
-  var color;
+  final title;
+  final image;
+  final color;
   final void Function()? onPressed;
-  var borderRadius;
+  final borderRadius;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
