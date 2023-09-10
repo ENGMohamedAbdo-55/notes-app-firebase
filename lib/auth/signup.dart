@@ -12,8 +12,8 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  TextEditingController email = TextEditingController(); 
-  TextEditingController Password = TextEditingController(); 
+  TextEditingController email = TextEditingController();
+  TextEditingController Password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class _SignUpState extends State<SignUp> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 40),
-              const  CustomAuthLogo(),
+                const CustomAuthLogo(),
                 const SizedBox(height: 10),
                 const Text('SignUp',
                     style:
@@ -33,20 +33,20 @@ class _SignUpState extends State<SignUp> {
                 const SizedBox(height: 5),
                 const Text('Login to continue  using the app',
                     style: TextStyle(color: Color(0xFF424242), fontSize: 17)),
-                 CustomTextField(
+                CustomTextField(
                   mainTxt: 'User Name',
                   hintTxt: 'Enter Your User Name',
                   myController: email,
                 ),
-                 CustomTextField(
+                CustomTextField(
                   mainTxt: 'Email',
                   hintTxt: 'Enter Your Email',
                   myController: email,
                 ),
-                 CustomTextField(
+                CustomTextField(
                   mainTxt: 'Password',
                   hintTxt: 'Enter Your Password',
-                myController: Password,
+                  myController: Password,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 5, right: 3),
@@ -62,13 +62,14 @@ class _SignUpState extends State<SignUp> {
                 ),
               ],
             ),
-             MainButtonWithNotImage(
-              onPressed: (){},
-                color: const Color(0xff2cc1ac), title: 'Login', height: 45),
+            CustomMainButtonWithoutImg(
+                onPressed: () {},
+                color: const Color(0xff2cc1ac),
+                title: 'Login',
+                height: 45),
             const SizedBox(
               height: 20,
             ),
-         
             const SizedBox(
               height: 15,
             ),
@@ -83,7 +84,9 @@ class _SignUpState extends State<SignUp> {
                       color: Colors.grey[700]),
                 ),
                 InkWell(
-                  onTap: () {Navigator.of(context).pushNamed("Login");},
+                  onTap: () {
+                    Navigator.of(context).pushNamed("Login");
+                  },
                   child: const Text(
                     "Login",
                     style: TextStyle(
@@ -100,6 +103,3 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
-
-
-

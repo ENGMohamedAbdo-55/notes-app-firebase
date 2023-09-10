@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MainButtonWithNotImage extends StatelessWidget {
-  const MainButtonWithNotImage({
+class CustomMainButtonWithoutImg extends StatelessWidget {
+  const CustomMainButtonWithoutImg({
     Key? key,
     required this.color,
     required this.title,

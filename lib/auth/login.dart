@@ -3,6 +3,7 @@ import 'package:firebase_basics/component/text_form_field.dart';
 import 'package:flutter/material.dart';
 
 import '../component/custom_auth_logo.dart';
+import '../component/custom_main_button_witout_img.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,8 +13,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController email = TextEditingController(); 
-  TextEditingController Password = TextEditingController(); 
+  TextEditingController email = TextEditingController();
+  TextEditingController Password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 40),
-              const  CustomAuthLogo(),
+                const CustomAuthLogo(),
                 const SizedBox(height: 10),
                 const Text('Login',
                     style:
@@ -33,15 +34,15 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 5),
                 const Text('Login to continue  using the app',
                     style: TextStyle(color: Color(0xFF424242), fontSize: 17)),
-                 CustomTextField(
+                CustomTextField(
                   mainTxt: 'Email',
                   hintTxt: 'Enter Your Email',
                   myController: email,
                 ),
-                 CustomTextField(
+                CustomTextField(
                   mainTxt: 'Password',
                   hintTxt: 'Enter Your Password',
-                myController: Password,
+                  myController: Password,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 5, right: 3),
@@ -57,35 +58,20 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-             MainButtonWithNotImage(
-              onPressed: (){},
-                color: const Color(0xff2cc1ac), title: 'Login', height: 45),
+            CustomMainButtonWithoutImg(
+                onPressed: () {},
+                color: const Color(0xff2cc1ac),
+                title: 'Login',
+                height: 45),
             const SizedBox(
               height: 20,
             ),
-            MaterialButton(
-              height: 45,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              onPressed: () {},
+            CustomMainButton(
+              title: 'Login With',
+              image: 'assets/images/download (1).png',
               color: const Color(0xff7b8c9c),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Login With',
-                    style: TextStyle(color: Colors.white, fontSize: 17),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Image.asset(
-                    'assets/images/download (1).png',
-                    width: 45,
-                  )
-                ],
-              ),
+              onPressed: () {},
+              borderRadius: 15.0,
             ),
             const SizedBox(
               height: 15,
@@ -101,7 +87,9 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.grey[700]),
                 ),
                 InkWell(
-                  onTap: () {Navigator.of(context).pushNamed("SignUp");},
+                  onTap: () {
+                    Navigator.of(context).pushNamed("SignUp");
+                  },
                   child: const Text(
                     " Register",
                     style: TextStyle(
@@ -118,6 +106,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-
-
